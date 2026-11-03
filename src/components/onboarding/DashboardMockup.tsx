@@ -91,7 +91,7 @@ export const DashboardMockup: React.FC = () => {
               return (
                 <button
                   key={item.name}
-                  // onClick={() => setActiveNav(item.name)}
+                  onClick={() => setActiveNav(item.name)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',

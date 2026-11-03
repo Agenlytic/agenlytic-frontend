@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MessageSquare,
   Share2,
@@ -7,21 +8,18 @@ import {
   Zap,
   TrendingUp,
   ArrowRight,
-  Play,
-  ChevronRight,
   Sparkles,
 } from '../components/common/Icons';
 import Logo from '../components/common/Logo';
 import Button from '../components/common/Button';
 import Badge from '../components/common/Badge';
-import CarouselDots from '../components/common/CarouselDots';
 import FeatureCard from '../components/onboarding/FeatureCard';
 import IntegrationOrbit from '../components/onboarding/IntegrationOrbit';
 import DashboardMockup from '../components/onboarding/DashboardMockup';
 import BackgroundDecorations from '../components/onboarding/BackgroundDecorations';
 
 export const OnboardingScreen: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(0);
+  const navigate = useNavigate();
 
   const features = [
     {
@@ -50,12 +48,8 @@ export const OnboardingScreen: React.FC = () => {
     },
   ];
 
-  const handleNext = () => {
-    setCurrentStep((prev) => (prev < 3 ? prev + 1 : 0));
-  };
-
-  const handleSkip = () => {
-    setCurrentStep(3);
+  const handleGetStarted = () => {
+    navigate('/signup');
   };
 
   return (
@@ -98,50 +92,9 @@ export const OnboardingScreen: React.FC = () => {
           }}
         >
           {/* Brand Logo */}
-          <Logo size="md" />
-
-          {/* Carousel Pagination & Skip Button */}
-          {/* <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <CarouselDots
-              total={4}
-              activeIndex={currentStep}
-              onChange={(idx) => setCurrentStep(idx)}
-            />
-
-            <button
-              onClick={handleSkip}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px',
-                padding: '7px 18px',
-                background: 'rgba(255, 255, 255, 0.75)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
-                border: '1px solid rgba(226, 232, 240, 0.8)',
-                borderRadius: '9999px',
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                color: '#334155',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#ffffff';
-                e.currentTarget.style.borderColor = '#c7d2fe';
-                e.currentTarget.style.color = '#4f46e5';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.75)';
-                e.currentTarget.style.borderColor = 'rgba(226, 232, 240, 0.8)';
-                e.currentTarget.style.color = '#334155';
-              }}
-            >
-              <span>Skip</span>
-              <ChevronRight size={16} />
-            </button>
-          </div> */}
+          <div style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
+            <Logo size="md" />
+          </div>
         </header>
 
         {/* Hero Section Content Grid */}
@@ -197,7 +150,6 @@ export const OnboardingScreen: React.FC = () => {
                   fontFamily: 'var(--font-sans)',
                   fontSize: 'clamp(2.5rem, 4vw, 3.6rem)',
                   fontWeight: 800,
-                  lineHeight: 1.08,
                   letterSpacing: '-0.03em',
                   background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
                   WebkitBackgroundClip: 'text',
@@ -254,53 +206,10 @@ export const OnboardingScreen: React.FC = () => {
                 size="lg"
                 pill={true}
                 rightIcon={<ArrowRight size={18} />}
-                onClick={handleNext}
+                onClick={handleGetStarted}
               >
                 Get Started
               </Button>
-
-              {/* <button
-                type="button"
-                onClick={() => alert('Agenlytics Tour: Watch how autonomous multi-agent pipelines transform your enterprise workflows.')}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#4338ca',
-                  fontWeight: 700,
-                  fontSize: '1rem',
-                  cursor: 'pointer',
-                  padding: '8px 12px',
-                  borderRadius: '9999px',
-                  transition: 'all 0.2s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#312e81';
-                  e.currentTarget.style.background = 'rgba(238, 242, 255, 0.7)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#4338ca';
-                  e.currentTarget.style.background = 'transparent';
-                }}
-              >
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '24px',
-                    height: '24px',
-                    borderRadius: '50%',
-                    border: '2px solid #6366f1',
-                    color: '#6366f1',
-                  }}
-                >
-                  <Play size={11} fill="#6366f1" style={{ transform: 'translateX(1px)' }} />
-                </span>
-                <span>Learn More</span>
-              </button> */}
             </div>
           </div>
 

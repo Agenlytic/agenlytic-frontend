@@ -124,6 +124,19 @@ input, textarea {
   animation: floatGentle 4s ease-in-out infinite;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
 /* Scrollbar customization */
 ::-webkit-scrollbar {
   width: 6px;
@@ -139,3 +152,4 @@ input, textarea {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(148, 163, 184, 0.5);
 }
+
